@@ -14,4 +14,5 @@ function react(obj) {
     })
   })
 }
+module.exports = react
 
