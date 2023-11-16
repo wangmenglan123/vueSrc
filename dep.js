@@ -1,4 +1,3 @@
-const react = require('./react.js')
 class Dep {
     constructor() {
         this.subscribers =[]
@@ -14,19 +13,15 @@ class Dep {
         })
     }
 }
-let dep= new Dep()
 let activedUpdate;
 function autorun(update) {
     function wapperUpdate() {
-        activedUpdate = wapperUpdate
+        activedUpdate  = wapperUpdate
         update()
         activedUpdate = null
     }
     wapperUpdate()
+
 }
-let obj = {'name':'wml'}
-react(obj)
-autorun(()=>{
- console.log(obj.name) //相当于dep.depend
-})
-obj.name = 'jxq'
+module.exports = {autorun,Dep}
+
