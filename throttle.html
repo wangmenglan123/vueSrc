@@ -1,0 +1,73 @@
+<html>
+    <head></head>
+    <body>
+        <div class="scroll">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia at ratione officiis! Nostrum qui soluta ipsa obcaecati dolorum? Similique ut soluta amet fugiat adipisci veritatis. Blanditiis quasi accusantium magni aliquid?
+        </div>
+        <span>距离：</span>
+        <script>
+            let dom = document.querySelector('.scroll')
+            let dom1 = document.querySelector('span')
+            dom.onscroll = throttle(function() {
+                dom1.innerHTML = `距离：${this.scrollTop}`
+            },2000)
+            // dom.onscroll = function() {
+            //     dom1.innerHTML = `距离：${this.scrollTop}`
+            // }
+            function throttle(fn,delay) {
+                let pre= 0
+                return function() {
+                    let cur= Date.now()
+                    if(cur-pre>delay) {
+                        fn.apply(this)
+                        pre = Date.now()
+                    }
+                }
+            }
+            // function throttle(fn,delay) {
+            //     let timer= null
+            //     return function () {
+            //         if(!timer) {
+            //             timer=setTimeout(()=>{
+            //                 fn.apply(this)
+            //                 timer = null
+            //             },delay)
+            //         }
+            //     }
+            // }
+            // function throttle(fn,delay) {
+            //     let timer= null
+            //     let pre = 0
+            //     return function () {
+            //         let cur = Date.now()
+            //         let left = delay-(cur-pre)
+            //         if(left<=0) {
+            //             fn.apply(this)
+            //             pre= cur
+            //             if(timer)
+            //             {
+            //                 clearTimeout(time);
+            //                 timer=null;
+            //             }
+                        
+            //         }
+            //         else if(!timer) {
+            //             timer=setTimeout(()=>{
+            //                 console.log('timer----',cur,pre)
+            //                 fn.apply(this)
+            //                 pre=Date.now()
+            //                 timer = null
+            //             },left)
+            //         }
+            //     }
+            // }
+        </script>
+    </body>
+</html>
+<style>
+    .scroll {
+        width: 100px;
+        height: 300px;
+        overflow: scroll;
+    }
+</style>

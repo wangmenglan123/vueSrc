@@ -21,7 +21,6 @@ function autorun(update) {
         activedUpdate = null
     }
     wapperUpdate()
-
 }
 module.exports = {autorun,Dep}
 

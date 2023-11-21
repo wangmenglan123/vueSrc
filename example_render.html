@@ -1,0 +1,26 @@
+
+   
+<div id="app">
+    <example :tags=['h1','h2','h3']></example>
+</div>
+
+<script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.esm.browser.js'
+    Vue.component('example',{
+        props:{
+            tags:{
+                type: Array
+            }
+        },
+        render: function(h) {
+            let children = this.tags.map((tag,i)=>{
+                return h(tag,i)
+            })
+            return h('div',children)
+        }
+    }) 
+    const app1 = new Vue({
+        el: '#app'
+    })
+</script>
+
