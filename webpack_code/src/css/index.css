@@ -1,0 +1,7 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: aquamarine;
+  background-image: url('../assets/images/test5.gif');
+  background-size: cover;
+}
