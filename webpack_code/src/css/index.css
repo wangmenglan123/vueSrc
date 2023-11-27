@@ -1,6 +1,7 @@
 .box {
-  width: 100px;
+  width: 200px;
   height: 100px;
+  display: flex;
   background-color: aquamarine;
   background-image: url('../assets/images/test5.gif');
   background-size: cover;

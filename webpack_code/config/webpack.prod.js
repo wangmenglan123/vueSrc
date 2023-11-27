@@ -1,7 +1,31 @@
 //运行在nodejs
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const path = require('path')
+function getStyleModule(pre) {
+  return [
+    MiniCssExtractPlugin.loader, //link引入单独的css文件
+    'css-loader', //将css资源编译成commonjs模块到js中
+    {
+      loader: 'postcss-loader',
+      options: {
+        postcssOptions: {
+          plugins: [
+            [
+              'postcss-preset-env',
+              {
+                // 其他选项
+              },
+            ],
+          ],
+        },
+      },
+    },
+    pre
+  ].filter(Boolean)
+}
 module.exports = {
   //入口
   entry: './src/main.js', //相对路径
@@ -16,19 +40,11 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader', //将js中的css通过创建style标签添加到html中生效
-          'css-loader' //将css资源编译成commonjs模块到js中
-        ]
+        use: getStyleModule()
       },
       {
         test: /\.less$/,
-        use: [
-          'style-loader', //将js中的css通过创建style标签添加到html中生效
-          'css-loader', //将css资源编译成commonjs模块到js中
-          'less-loader'
-
-        ]
+        use: getStyleModule('less-loader')
       },
       {
         test: /\.(jpe?g|png|webp|gif)$/,
@@ -58,8 +74,14 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html' //保持原来的html结构 ，将打包后的文件自动引入
-    })
+    }),
+    //css单独打包，不用等待js加载
+    new MiniCssExtractPlugin({
+      filename: 'css/main.css'
+    }),
+    new CssMinimizerPlugin() //css文件压缩
   ],
   //模式
-  mode: 'production'
+  mode: 'production',
+  devtool:"source-map" //一般不使用，避免反编译（行和列映射）
 }
