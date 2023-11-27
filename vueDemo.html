@@ -1,0 +1,33 @@
+<div id="app">
+    <p v-for="item in arrys">
+        {{item}}
+    </p>
+    <!-- <p v-for="key in Object.keys(objs)">
+        {{objs[key]}}
+    </p> -->
+    <button @click="add">add</button>
+    <button @click="reset">reset</button>
+</div>
+<script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.esm.browser.js'
+    new Vue({
+        'el':'#app',
+        data: {
+            arrys: [1,2,3,4],
+            objs: {
+                'name':'wml',
+                age: 18
+            }
+        },
+        methods: {
+            add() {
+                this.arrys.push(this.arrys.length+1)
+            },
+            reset() {
+                //this.arrys[3]='888' //不能被vue监测
+                //this.objs.name= "jxq"
+            }
+        }
+    })
+
+</script>

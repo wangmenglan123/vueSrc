@@ -1,0 +1,22 @@
+{
+  "name": "vuesrc",
+  "version": "1.0.0",
+  "description": "学习vue源码",
+  "main": "autorun.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangmenglan123/vueSrc.git"
+  },
+  "keywords": [
+    "wmlwml619619..33"
+  ],
+  "author": "wml",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangmenglan123/vueSrc/issues"
+  },
+  "homepage": "https://github.com/wangmenglan123/vueSrc#readme"
+}
