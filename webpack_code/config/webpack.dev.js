@@ -15,7 +15,8 @@ module.exports = {
   devServer: {
     host: "localhost", //域名
     port: "3000", //端口号
-    open: true //是否自动开启浏览器
+    open: true, //是否自动开启浏览器，
+    hot: true //css热更新 ，默认为true
   },
   //加载器
   module: {
@@ -24,7 +25,22 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader', //将js中的css通过创建style标签添加到html中生效
-          'css-loader' //将css资源编译成commonjs模块到js中
+          'css-loader', //将css资源编译成commonjs模块到js中
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      // 其他选项
+                    },
+                  ],
+                ],
+              },
+            },
+          }
         ]
       },
       {
@@ -32,6 +48,21 @@ module.exports = {
         use: [
           'style-loader', //将js中的css通过创建style标签添加到html中生效
           'css-loader', //将css资源编译成commonjs模块到js中
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      // 其他选项
+                    },
+                  ],
+                ],
+              },
+            },
+          },
           'less-loader'
 
         ]
@@ -61,11 +92,13 @@ module.exports = {
   plugins: [
     new ESLintPlugin({
       context: path.resolve(__dirname, '../src')
+      //exclude:path.resolve(__dirname, '../node_modules')
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html' //保持原来的html结构 ，将打包后的文件自动引入
-    })
+    }),
   ],
   //模式
-  mode: 'development'
+  mode: 'development',
+  devtool:"cheap-module-source-map" //编译后的行与源代码行一对一
 }
