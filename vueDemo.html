@@ -1,12 +1,13 @@
 <div id="app">
-    <p v-for="item in arrys">
+    <!-- <p v-for="item in arrys">
         {{item}}
-    </p>
+    </p> -->
     <!-- <p v-for="key in Object.keys(objs)">
         {{objs[key]}}
     </p> -->
     <button @click="add">add</button>
     <button @click="reset">reset</button>
+    <p v-if="objs.sex">{{sex}}</p>
 </div>
 <script type="module">
     import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.esm.browser.js'
@@ -17,6 +18,11 @@
             objs: {
                 'name':'wml',
                 age: 18
+            },
+        },
+        computed: {
+            sex() {
+                return this.objs.sex+'1'
             }
         },
         methods: {
@@ -25,7 +31,9 @@
             },
             reset() {
                 //this.arrys[3]='888' //不能被vue监测
-                //this.objs.name= "jxq"
+                this.objs.name= "jxq"
+                this.objs['sex']= 'nv'
+                console.log(this.objs )
             }
         }
     })
