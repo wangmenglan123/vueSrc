@@ -2,9 +2,16 @@
     <!-- <p v-for="item in arrys">
         {{item}}
     </p> -->
-    <!-- <p v-for="key in Object.keys(objs)">
+    <div class="div_blank">
+        <img src="./webpack_code/src/assets/images/test2.png" alt="">
+    
+    <div class="content">1111</div>
+    </div>
+    
+    <div class="content2">2222</div>
+    <p v-for="key in Object.keys(objs)">
         {{objs[key]}}
-    </p> -->
+    </p>
     <button @click="add">add</button>
     <button @click="reset">reset</button>
     <p v-if="objs.sex">{{sex}}</p>
@@ -16,8 +23,7 @@
         data: {
             arrys: [1,2,3,4],
             objs: {
-                'name':'wml',
-                age: 18
+               
             },
         },
         computed: {
@@ -27,15 +33,41 @@
         },
         methods: {
             add() {
-                this.arrys.push(this.arrys.length+1)
+                //this.arrys.push(this.arrys.length+1)
+                this.objs = {
+                    'name':'wml',
+                    age: 18
+                }
             },
             reset() {
                 //this.arrys[3]='888' //不能被vue监测
-                this.objs.name= "jxq"
-                this.objs['sex']= 'nv'
+                // this.objs.name= "jxq"
+                this.objs.sex= 'nv'
                 console.log(this.objs )
             }
         }
     })
 
 </script>
+<style>
+    .content {
+        position: absolute;
+        top: 500px;
+        left: 100px;
+        height: 300px;
+        width:600px;
+        background-color: pink;
+    }
+    /* #app {
+        background-image: url('./webpack_code/src/assets/images/test2.png');
+    }*/
+    .div_blank {
+        height: 1000px;
+    } 
+    .content2 {
+        
+        height: 300px;
+        width:600px;
+        background-color: red;
+    }
+</style>

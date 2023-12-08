@@ -1,0 +1,23 @@
+<html>
+    <head></head>
+    <body>
+        <script>
+            // 1.浏览器js引擎编译js代码分为预解析和执行两步
+            console.log(age) //输出undefined   var 变量提升
+            var age = 18
+            fn() //可以执行 function函数提升
+            //fn1() //不可以执行，因为变量提升 ，所以fn1 为undefined ，不是可执行函数
+            function fn() {
+                console.log('test')
+            }
+            var fn1 = function() {
+                console.log('test1')
+            }
+            var fn3 = 10
+            function fn3() {
+                console.log('test3')
+            }
+            fn3() //报错，顺序为fn3变量提升声明 fn3函数提升声明和定义 fn3赋值
+        </script>
+    </body>
+</html>

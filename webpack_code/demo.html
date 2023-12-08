@@ -1,0 +1,63 @@
+<html>
+
+</html>
+<script>
+    function  test1(id) {
+        return new Promise((resolve)=>{
+            console.log(id+'pro')
+            setTimeout(()=>{
+                resolve(id)
+            },Math.random() * id * 100)
+        })
+    }
+    async function run () {
+        let ids = [1,2,3,4];
+        //乱序，因为数组的高阶函数不等待异步操作
+        // ids.forEach(async (item)=>{
+        //     let a= await test1(item)
+        //     console.log(a)
+        // })
+        // //解决方案1：放弃高阶函数
+        // for(let id of ids) {
+        //     let a = await test1(id)
+        //     console.log(a)
+        // }
+        //解决方案2：执行所有的异步函数
+        // (await Promise.all(ids.map(test1))).forEach(element => {
+        //     console.log(element)
+        // });
+    }
+    class asyncArray {
+        constructor(...args) {
+            this._arr = Array.from(args)
+        }
+        async forEach(fn) {
+            const arr = this._arr
+            for (let i = 0, len = arr.length; i < len; i++) {
+                let a =await fn(arr[i], i, this)
+                console.log(a)
+            }
+        }
+        async map(fn) {
+            const arr = this._arr
+            const res = []
+            for (let i = 0, len = arr.length; i < len; i++) {
+                let a = await fn(arr[i], i, this)
+                console.log('a',a)
+                res.push(a)
+            }
+            return res
+        }
+    }
+    let ids =[1,2,3,4];
+    let res ;
+   ( async()=> {res = await new asyncArray(...ids).map(test1);
+console.log(res)})()
+     
+    
+    //run()
+    
+    
+
+
+</script>
