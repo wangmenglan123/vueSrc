@@ -5,7 +5,9 @@
         <Menu></Menu>
       </el-aside>
       <el-container>
-        <el-header>Header</el-header>
+        <el-header>
+          <Head></Head>
+        </el-header>
         <el-main> <router-view></router-view></el-main>
       </el-container>
     </el-container>
@@ -13,9 +15,26 @@
 </template>
 <script>
 import Menu from "../components/Menu";
+import Head from "../components/Head";
 export default {
   components: {
-    Menu
+    Menu,
+    Head
+  },
+  data() {
+    return {
+      isCollapse: false,
+    }
+  },
+  methods: {
+    changeMenuSta() {
+      this.isCollapse = !this.isCollapse
+    }
   }
 }
 </script>
+<style lang="less" scoped>
+.el-header {
+  padding: 0;
+}
+</style>
