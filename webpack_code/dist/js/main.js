@@ -1,0 +1,1 @@
+!function(){"use strict";console.log(3),console.log([1,2,3,4,5,6].reduce(((o,c)=>o+c),0))}();
