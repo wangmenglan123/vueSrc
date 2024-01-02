@@ -1,0 +1,65 @@
+<html>
+    <body>
+        <div class="parent">parent
+            <div class="children">children</div>
+            <div class="children1">children1</div>
+        </div>
+        <button @click="change">change</button>
+        <button @click="add">add</button>
+        <button @click="remove">remove</button>
+        <script>
+            let domP = document.querySelector('.parent')
+            let btn = document.querySelector('button')
+            // let callback=(list)=>{
+            //     for (let i of list) {
+            //         if(i.removedNodes) {
+            //             for(let node of i.removedNodes) {
+            //                 if(node.className == 'children1') {
+            //                     console.log(node)
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+            // let callback = (list) =>{
+            //     console.log('11111')
+            // }
+            // let observer = new MutationObserver(callback);
+            // let config = {
+            //     attributes: false,
+            //     childList: true,
+            //     subtree: true,
+            //     CharacterData: true
+            // }
+            // observer.observe(dom,config)
+            // btn.onclick = ()=>{
+            //     dom.parentNode.removeChild(dom)
+            //     const changes = observer.takeRecords();
+            //     console.log(changes);
+            //     //observer.disconnect()
+            // }
+
+            let observer = new IntersectionObserver((e) => {
+            e.forEach((dom) => {
+                // isIntersecting为true则dom出现在页面上
+                if(dom.isIntersecting) {
+                    console.log('出现了！！！！！！')
+                }
+            })
+            }, {})
+            let doms = document.getElementsByClassName('children3')
+        
+            for (let dom of doms) {
+                observer.observe(dom)
+            } 
+            btn.onclick = ()=>{
+                let ele = document.createElement('div')
+                ele.className="children3"
+                ele.innerHTML="children3"
+                console.log(ele,domP)
+                domP.appendChild(ele)
+                
+            }
+        </script>
+    </body>
+</html>
