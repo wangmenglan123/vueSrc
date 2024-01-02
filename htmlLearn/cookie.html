@@ -1,0 +1,39 @@
+<form  id="1">
+    <p>用户名</p>
+    <input type="text">
+    <p>密码</p>
+    <input type="password">
+    <input type="checkbox"><span>记住我</span>
+    <button>提交</button>
+  </form>
+  <script>
+      let nameDom = document.querySelector('input[type="text"]')
+      let pwdDom =document.querySelector('input[type="password"]')
+      let chDom = document.querySelector('input[type="checkbox"]')
+      let btn = document.querySelector('button')
+      console.log('cookie',document.cookie)
+      // if(document.cookie!='') {
+      //   let arr = document.cookie.split(';')
+      //   let cookie = {}
+      //   arr.forEach((item)=>{
+      //     let temp =item.split('=')
+      //     cookie[temp[0]] = decodeURIComponent(temp[1])
+      //   })
+      //   nameDom.value = cookie.username
+      //   chDom.checked = true
+      // }
+      
+        btn.onclick =(e) =>{
+          e.preventDefault()
+          if(chDom.checked&& nameDom.value!='') {
+            let key = "username"
+            let value = encodeURIComponent(nameDom.value)
+            let time = 2;
+            document.cookie = `${key}=${value}`
+            document.cookie = `max-age=${time}`
+            console.log(document.cookie)
+          }
+         
+        }
+     
+  </script>
