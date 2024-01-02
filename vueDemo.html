@@ -1,4 +1,6 @@
 <div id="app">
+    <div class="boxtest">
+    </div>
     <!-- <p v-for="item in arrys">
         {{item}}
     </p> -->
@@ -70,4 +72,29 @@
         width:600px;
         background-color: red;
     }
+
+    .boxtest {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        margin: 0 6px;
+        border: 1px solid #e64848 !important;
+        border-radius: 2px;
+}
+
+.boxtest::after {
+    content: " ";
+    position: absolute;
+    display: inline-block;
+    width: 12px;
+    height: 6px;
+    border-width: 0 0 2px 2px;
+    overflow: hidden;
+    border-color: #e64848;
+    border-style: solid;
+    -webkit-transform: rotate(-50deg);
+    transform: rotate(-50deg);
+    left: 3px;
+    top: 4px;
+  }
 </style>
